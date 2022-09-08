@@ -1,12 +1,12 @@
 const shuffle = (arr) => {
-    let arrCopy = [...arr];
+    let question;
 
-    for (i = arrCopy.length - 1; i > 0; i--){
+    for (i = 0; i <arrCopy.length; i++){
         const j = Math.floor(Math.random()*arrCopy.length);
-        [arrCopy[i], arrCopy[j]] = [arrCopy[j], arrCopy[i]];
+        question = arrCopy
     }
 
-    return arrCopy;
+    return arrCopy[j];
 }
 
 module.exports = {

@@ -84,6 +84,21 @@
 	border-bottom: 40px solid rgb(7, 163, 7);
 }
 
+.radio-div{
+    border-color: black;
+    display: block;
+    margin: auto;
+}
+
+.riddle-box{
+    border-color: black;
+    display: block;
+    margin: auto;
+}
+
+.butter{
+    background-image: url('/server/kitchen.png');
+}
 
 .hide {
     display: none;

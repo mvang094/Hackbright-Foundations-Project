@@ -1,31 +1,33 @@
-const circle =[
+const riddles =[
     {
         id: 0,
-        buttonLink: <button class = "dot wrong"></button>
+        question: "What has to be broken before you can use it?",
+        answer: "eggs"
     },
+
     {
         id: 1,
-        buttonLink: <button class = "dot wrong-1"></button>
+        question: "What is always in front of you but can’t be seen?",
+        answer: "future"
     },
     {
         id: 2,
-        buttonLink: <button class = "dot wrong-2"></button>
+        question: "What can you break, even if you never pick it up or touch it?",
+        answer: "promise"
     },
     {
         id: 3,
-        buttonLink: <button class = "dot right"></button>
+        question: "I shave every day, but my beard stays the same. What am I?",
+        answer: "barber"
     },
     {
         id: 4,
-        buttonLink: <button class = "dot wrong-3"></button>
-    },
-    {
-        id: 5,
-        buttonLink: <button class = "dot wrong-4"></button>
+        question:  "I am the beginning of everything, the end of everywhere. I'm the beginning of eternity, the end of time and space. What am I?",
+        answer: "e"
     }
     
 ]
 
 module.exports = {
-    circle
+    riddles
 }

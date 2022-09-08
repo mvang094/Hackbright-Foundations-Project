@@ -10,10 +10,11 @@
 </head>
 
 <body>
-    <h1 id = "welcome"> Welcome!</h1>
-    <h3 id = "greeting">This is a simple interactive game. Please click "Play" to begin</h3>
-
-    <button id = "play">Play</button>
+    <section id = "introduction">
+        <h1 id = "welcome"> Welcome!</h1>
+        <h3 id = "greeting">This is a simple interactive game. Please click "Play" to begin</h3>
+        <button id = "play">Play</button>
+    </section>
 
     <div class = "divName">
         <form id = "nameForm">
@@ -50,12 +51,32 @@
         <button class = "triangle wrong-10"></button>
         <button class = "triangle wrong-11"></button>
     </div>
-    
-    <div class = "riddles">
-        
+
+    <div id = "riddle-box">
+        <form id = "riddleForm">
+            <h3>Riddles!</h3>
+            <h4>Can you answer the riddle with one word?</h4>
+            <label for = "riddle-answer" id = "rr"></label>
+            <br>
+            <input type = 'text' id = 'riddle-answer' name = 'riddle-answer'>
+            <input type="submit" value="Submit">
+        </form>
     </div>
 
-    <section id = "name-container"></section>
+    <!-- <div class = "movable">
+        <div id = "divHeader"></div>
+    </div> -->
+
+    <div class = "butter">
+    
+    </div>
+
+
+    <div class = "end-game">
+        <textarea>Thank You for your feedback!</textarea>
+    </div>
+
+    <section id = "container"></section>
 
     <script src = "https://unpkg.com/axios/dist/axios.min.js"></script>
     <script src= "index.js"></script>
