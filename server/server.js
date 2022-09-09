@@ -3,6 +3,8 @@ const cors = require("cors");
 const {riddles} = require("./data.js");
 // const shuffleBtns = require("./shuffle.js")
 
+let newId = 5;
+
 const app = express();
 
 app.use(cors());
@@ -20,17 +22,21 @@ app.get('/api/project', (req, res) => {
     res.status(200).send(question);
 })
 
-// app.post('/api/project/feedback', (req, res) => {
-//     let {name, response} = req.body;
+app.post('/api/project/postRiddle', (req, res) => {
+    let {riddle, answers} = req.body;
+    // let {id} = riddles;
 
-//     let newResponse = {
-//         name,
-//         response
-//     }
+    let newResponse = {
+        id: newId,
+        question: riddle,
+        answer: answers,  
+    }
+    newId++;
 
-//     feedbackArr.push(newResponse)
-//     res.status(200).send(response);
-// })
+    riddles.push(newResponse)
+
+    res.status(200).send(newResponse);
+})
 
 const SERVER_PORT = 5010;
 app.listen(SERVER_PORT, () => console.log(`Server is on port ${SERVER_PORT}`));

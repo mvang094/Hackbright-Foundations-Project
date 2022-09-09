@@ -3,6 +3,7 @@ let ridAnswer, ridHint;
 const playBtn2 = document.querySelector('.play2');
 const yesBtn = document.querySelector('#yes');
 const noBtn = document.querySelector('#no');
+const addRid = document.querySelector('#insert');
 
 const riddleBox = document.querySelector('.riddle-box');
 const riddleForm = document.querySelector('#riddleForm');
@@ -13,9 +14,12 @@ const tableBody = document.querySelector("maze-tBody");
 const threeBoxes = document.querySelector('.three-boxes');
 const mazeBox = document.querySelector("A-maze-zing");
 const replayDiv = document.querySelector(".replayDiv");
+const postDiv = document.querySelector(".postDiv");
+const postRiddle = document.querySelector("#postRiddle");
 
 riddleBox.classList.add('hide');
 replayDiv.classList.add('hide');
+postDiv.classList.add('hide');
 
 const baseURL = 'http://localhost:5010/api/project';
 
@@ -24,9 +28,21 @@ function riddler(){
     .then(res => {
         const data = res.data;
         console.log(data);
-        // if (data === "")
-            //alert a div
-            guessRiddle(data)
+        guessRiddle(data)
+    })
+}
+
+function postRiddles(body){
+    axios.post(`${baseURL}/postRiddle/`, body)
+    .then(res => {
+        const data1 = res.data;
+        console.log(data1);
+        let {question, answer} = data1;
+
+        alert(`You have successfully added the following riddle:
+                ${question}
+                ${answer}`);
+        playAgain();
     })
 }
 
@@ -46,6 +62,7 @@ function guessRiddle(value){
     riddleAnswer.setAttribute("type", "text");
     riddleAnswer.setAttribute("id", "riddlerAnswer");
     riddleAnswer.setAttribute("name", "riddlerAnswer");
+
     const riddleBtn = document.createElement('input');
     riddleBtn.setAttribute("type", "submit");
     riddleBtn.setAttribute("id", "ridBtn");
@@ -60,8 +77,6 @@ function guessRiddle(value){
 function getAnswer(event){
     event.preventDefault();
 
-    let wrongCount = 0;
-
     let inputAnswer = document.querySelector('#riddlerAnswer');
     let inputValue = inputAnswer.value;
     console.log(inputValue);
@@ -71,9 +86,7 @@ function getAnswer(event){
     if(lowerInputAnswer === ridAnswer)
     {
         console.log('Hurray!');
-        riddleBox.classList.add('hide');
-        replayDiv.classList.remove('hide');
-        inputAnswer = "";
+        inputAnswer.value = "";
         ridAnswer = "";
         ridHint = "";
         let removeBtn = document.querySelector('#ridBtn');
@@ -81,33 +94,65 @@ function getAnswer(event){
         riddleForm.removeChild(removeBtn);
         riddleForm.removeChild(removeAnswer);
 
-        yesBtn.addEventListener("click", again(ridAnswer));
-        noBtn.addEventListener("click", close); 
+        playAgain();
+
     }
     else
     {
-            wrongChoice();
-            wrongCount++;
+        inputAnswer.value = "";
+        wrongChoice();
     }
-    
-    // if(wrongCount === 3)
+
 }
 
 function wrongChoice(){
     alert("Hmm...Not quite");
 }
 
-function again(){
+function playAgain(){
+    console.log('Hurray!');
+    riddleBox.classList.add('hide');
+    postDiv.classList.add('hide');
+    replayDiv.classList.remove('hide');
+
+    yesBtn.addEventListener("click", replay);
+    noBtn.addEventListener("click", close);
+    addRid.addEventListener("click", postRid);
+}    
+
+
+function replay(){
     replayDiv.classList.add('hide');
-
-
-
     riddler();
 }
 
 function close(){
     replayDiv.classList.add('hide');
     threeBoxes.classList.remove('hide');
+}
+
+function postRid(){
+    replayDiv.classList.add('hide');
+    postDiv.classList.remove('hide');
+    postRiddle.addEventListener("submit", addRiddles);    
+}
+
+function addRiddles(event){
+    event.preventDefault();
+
+    let rQuestion = document.querySelector("#rQuestion");
+    let aQuestion = document.querySelector("#aQuestion");
+
+    let rObject = {
+        riddle: rQuestion.value,
+        answers: aQuestion.value
+    }
+    console.log(rObject);
+
+    postRiddles(rObject);
+
+    rQuestion.value = "";
+    aQuestion.value = "";
 }
 
 function createMaze(){
@@ -136,10 +181,6 @@ function createMaze(){
         }
         row.appendChild(col);
     }
-
-
-
-
 
 
 }

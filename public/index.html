@@ -54,18 +54,28 @@
                 <h4>Can you answer the riddle with one word?</h4>
                 <label for = "riddle-answer" id = "rr"></label>
                 <br>
-                <!-- <input type = "text" id = "riddle-answer" name = "riddle-answer">
-                <input type = "submit" id = "submit-r" value = "Submit"> -->
             </form>
         </div>
 
-
-
         <div class = "replayDiv">
-            <h3>Great job! Would you like to try another?
+            <h3>Great job! Would you like to play again? Add your own?
             </h3>
             <button id = "yes">Yes</button>
             <button id = "no">No</button>
+            <button id = "insert">Add a riddle</button>
+        </div>
+
+        <div class = "postDiv">
+            <form id = "postRiddle">
+                <h3>Enter your riddle. Please include only one word answers:</h3>
+                <label for = "riddleQ" id = "rQ">Question: </label>
+                <input type = "text" id = "rQuestion">
+                <br>
+                <label for = "answerQ" id = "aQ">Answer: </label>
+                <input type = "text" id = "aQuestion">
+                <br>
+                <input type = "submit" value = "Submit">
+            </form>
         </div>
 
         <div class = "A-maze-zing">
