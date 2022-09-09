@@ -9,16 +9,6 @@ app.use(cors());
 
 app.use(express.json());
 
-app.post('/api/project', (req, res) => {
-    let {name} = req.body;
-    res.status(200).send(name);
-})
-
-// app.post('/api/project/riddle', (req, res) => {
-//     let {rAnswer} = req.body;
-//     res.status(200).send(rAnswer);
-// })
-
 app.get('/api/project', (req, res) => {
     let question;
     
@@ -29,6 +19,18 @@ app.get('/api/project', (req, res) => {
     
     res.status(200).send(question);
 })
+
+// app.post('/api/project/feedback', (req, res) => {
+//     let {name, response} = req.body;
+
+//     let newResponse = {
+//         name,
+//         response
+//     }
+
+//     feedbackArr.push(newResponse)
+//     res.status(200).send(response);
+// })
 
 const SERVER_PORT = 5010;
 app.listen(SERVER_PORT, () => console.log(`Server is on port ${SERVER_PORT}`));

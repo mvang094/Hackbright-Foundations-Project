@@ -5,81 +5,62 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel = "stylesheet" href = "index.css">
-    
-    <title>Placeholder name</title>
+    <title>Document</title>
 </head>
-
 <body>
     <section id = "introduction">
-        <h1 id = "welcome"> Welcome!</h1>
-        <h3 id = "greeting">This is a simple interactive game. Please click "Play" to begin</h3>
-        <button id = "play">Play</button>
+        <center>Hello! This is an application with three simple games to try.
+            Please choose one!
+        </center>
     </section>
-
-    <div class = "divName">
-        <form id = "nameForm">
-            <label for = "fname">Please enter your name</label><br>
-            <input type = 'text' id = 'fname' name = 'fname'>
-            <input type="submit" value="Submit">
-        </form>
-    </div>
-    <br>
-
-    <div class = "buttons3">
-        <h3>Find the odd one out</h3>
-        <button class = "dot wrong"></button>
-        <button class = "dot wrong-1"></button>
-        <button class = "dot wrong-2"></button>
-        <button class = "dot right"></button>
-        <button class = "dot wrong-3"></button>
-        <button class = "dot wrong-4"></button>
-    </div>
-
-    <div class = "buttons1">
-        <h3>Find the odd one out</h3>
-        <button class = "rectangle right-r"></button>
-        <button class = "rectangle wrong-5"></button>
-        <button class = "rectangle wrong-6"></button>
-        <button class = "rectangle wrong-7"></button>
-    </div>                                                                                                                                                                                                                  
-
-    <div class = "buttons2">
-        <h3>Find the odd one out</h3>
-        <button class = "triangle wrong-8"></button>
-        <button class = "triangle right-t"></button>
-        <button class = "triangle wrong-9"></button>
-        <button class = "triangle wrong-10"></button>
-        <button class = "triangle wrong-11"></button>
-    </div>
-
-    <div id = "riddle-box">
-        <form id = "riddleForm">
-            <h3>Riddles!</h3>
-            <h4>Can you answer the riddle with one word?</h4>
-            <label for = "riddle-answer" id = "rr"></label>
-            <br>
-            <input type = 'text' id = 'riddle-answer' name = 'riddle-answer'>
-            <input type="submit" value="Submit">
-        </form>
-    </div>
-
-    <!-- <div class = "movable">
-        <div id = "divHeader"></div>
-    </div> -->
-
-    <div class = "butter">
-    
-    </div>
-
-
-    <div class = "end-game">
-        <textarea>Thank You for your feedback!</textarea>
-    </div>
-
-    <section id = "container"></section>
+    <main>
+        <div class = "three-boxes">
+            <div class = "box first-box">
+                <div class = "help">
+                    <button class = "question help1">?</button>
+                    <div class = "hide help-1">
+                        Can you spot the shape with the wrong color? One of the shapes has
+                        a different color than the rest. Try and find the odd one to advance
+                        to the next level.
+                    </div>
+                </div>
+                <div id = "first-text"><h3>Spot the Odd One</h3></div>
+                <button class = "play play1">Play</button>
+            </div>
+            <div class = "box second-box">
+                <div class = "help">
+                    <button class = "question help2">?</button>
+                    <div class = "hide help-2">
+                        Can you answer the riddle? A riddle will be randomly generated
+                        and you will have to guess the answer to the riddle. The answer
+                        to the riddle should only be one word
+                    </div>
+                </div>
+                <div id = "second-text"><h3>Guess the Riddle</h3></div>
+                <button class = "play play2">Play</button>
+            </div>
+            <div class = "box third-box">
+                <div class = "help">
+                    <button class = "question help3">?</button>
+                </div>
+                <div id = "third-text"><h3>Placeholder</h3></div>
+                <button class = "play play3">Play</button>
+            </div>
+        </div>
+        
+        <div class = "riddle-box">
+            <form id = "riddleForm">
+                <h3>Riddles!</h3>
+                <h4>Can you answer the riddle with one word?</h4>
+                <label for = "riddle-answer" id = "rr"></label>
+                <br>
+                <input type = "text" id = "riddle-answer" name = "riddle-answer">
+                <input type = "submit" id = "submit-r" value = "Submit">
+            </form>
+        </div>
+    </main>
 
     <script src = "https://unpkg.com/axios/dist/axios.min.js"></script>
     <script src= "index.js"></script>
 </body>
-
 </html>
