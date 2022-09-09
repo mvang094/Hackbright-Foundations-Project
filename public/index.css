@@ -127,8 +127,42 @@
     grid-template-columns: 300px;
 }
 
+.replayDiv{
+    display: grid;
+    margin: auto;
+    border: 2px solid grey;
+    border-radius: 5px;
+    padding: 10px;
+    width: 700px;
+    justify-content: center;
+    grid-template-columns: 300px;
+}
+
 body{
     background-color: blanchedalmond;
+    /* display: flex;
+    flex-direction: column;
+    justify-content: center; */
+}
+
+main{
+    margin-top: 50px;
+}
+
+a{
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+    color:black;
+}
+
+a, u{
+    text-decoration: none;
+}
+
+a:hover{
+    color:chocolate;
+    border: 5px gray;
 }
 
 .hide{

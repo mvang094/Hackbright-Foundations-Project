@@ -54,12 +54,31 @@
                 <h4>Can you answer the riddle with one word?</h4>
                 <label for = "riddle-answer" id = "rr"></label>
                 <br>
-                <input type = "text" id = "riddle-answer" name = "riddle-answer">
-                <input type = "submit" id = "submit-r" value = "Submit">
+                <!-- <input type = "text" id = "riddle-answer" name = "riddle-answer">
+                <input type = "submit" id = "submit-r" value = "Submit"> -->
             </form>
         </div>
-    </main>
 
+
+
+        <div class = "replayDiv">
+            <h3>Great job! Would you like to try another?
+            </h3>
+            <button id = "yes">Yes</button>
+            <button id = "no">No</button>
+        </div>
+
+        <div class = "A-maze-zing">
+            <table id = "maze-T">
+                <tbody id = "maze-tBody">
+                </tbody>
+            </table>
+        </div>
+
+    </main>
+    <div class = "fLink">
+        <a href = "feedback.html">Leave a feedback!</a>
+    </div>
     <script src = "https://unpkg.com/axios/dist/axios.min.js"></script>
     <script src= "index.js"></script>
 </body>
