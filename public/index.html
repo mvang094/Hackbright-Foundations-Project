@@ -9,19 +9,50 @@
 </head>
 <body>
     <section id = "introduction">
-        <center>Hello! This is an application with three simple games to try.
+        <h2><center>Hello! This is an application with three simple games to try.
             Please choose one!
-        </center>
+        </center></h2>
     </section>
     <main>
+        <div class = "buttons1">
+            <h3>Find the odd one out</h3>
+            <br>
+            <button class = "rectangle right-r"></button>
+            <button class = "rectangle wrong-5"></button>
+            <button class = "rectangle wrong-6"></button>
+            <button class = "rectangle wrong-7"></button>
+        </div>                                                                                                                                                                                                                  
+    
+        <div class = "buttons2">
+            <h3>Find the odd one out</h3>
+            <button class = "triangle wrong-8"></button>
+            <button class = "triangle right-t"></button>
+            <button class = "triangle wrong-9"></button>
+            <button class = "triangle wrong-10"></button>
+            <button class = "triangle wrong-11"></button>
+        </div>
+        
+        <div class = "buttons3">
+            <h3>Find the odd one out</h3>
+            <button class = "dot wrong"></button>
+            <button class = "dot wrong-1"></button>
+            <button class = "dot wrong-2"></button>
+            <button class = "dot right"></button>
+            <button class = "dot wrong-3"></button>
+            <button class = "dot wrong-4"></button>
+        </div>
+
+        <div class = "fruit-list">
+        </div>
+        <div class = "fruit-ninja"></div>
+        
         <div class = "three-boxes">
             <div class = "box first-box">
                 <div class = "help">
                     <button class = "question help1">?</button>
                     <div class = "hide help-1">
-                        Can you spot the shape with the wrong color? One of the shapes has
-                        a different color than the rest. Try and find the odd one to advance
-                        to the next level.
+                        Can you spot the odd one out? One is not like the other.
+                         Try and find the odd one to advance to the next level.
                     </div>
                 </div>
                 <div id = "first-text"><h3>Spot the Odd One</h3></div>
@@ -55,10 +86,11 @@
                 <label for = "riddle-answer" id = "rr"></label>
                 <br>
             </form>
+            <label id = "show"></label>
         </div>
 
         <div class = "replayDiv">
-            <h3>Great job! Would you like to play again? Add your own?
+            <h3>Would you like to play again? Add your own?
             </h3>
             <button id = "yes">Yes</button>
             <button id = "no">No</button>

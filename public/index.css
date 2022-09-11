@@ -1,7 +1,119 @@
+.buttons1, .buttons2, .buttons3{
+    margin: auto;
+    border: 2px solid grey;
+    border-radius: 5px;
+    background-color: beige;
+    text-align: center;
+    padding: 20px;
+    justify-content: center;
+    flex-wrap: wrap;
+    width: 700px;
+}
+
+.dot {
+    border-radius: 50%;
+    border: none;
+    padding: 20px;
+    display: inline-block;
+    margin: 4px 2px;
+    cursor: pointer;
+}
+
+.rectangle {
+    height: 100 px;
+    width: 150 px;
+    padding: 20px;
+    cursor: pointer;
+    border: none;
+    display: inline-block;
+    margin: 4px 2px;
+}
+
+.triangle {
+    cursor: pointer;
+    display: inline-block;
+    margin: 4px 2px;
+}
+
+/* Circles */
+.wrong-1, .wrong-2, .wrong-3, .wrong-4, .wrong{
+    background-color: rgb(5, 90, 90);
+}
+.right{
+    background-color: rgb(7, 90, 100);
+}
+
+/* Rectangles */
+.wrong-5, .wrong-6,.wrong-7 {
+    background-color:rgb(194, 108, 10);
+}
+.right-r{
+    background-color:rgb(245, 189, 4);
+}
+
+/* Triangles */
+.wrong-8, .wrong-9, .wrong-10, .wrong-11, .wrong-12{
+    border-left: 20px solid transparent;
+	border-right: 20px solid transparent;
+	border-bottom: 40px solid rgb(10, 194, 10);
+}
+.right-t{
+    border-left: 20px solid transparent;
+	border-right: 20px solid transparent;
+	border-bottom: 40px solid rgb(7, 163, 7);
+}
+
+.fruit-list{
+    display: grid;
+    margin: auto;
+    border: 2px solid grey;
+    background-color: beige;
+    border-radius: 5px;
+    padding: 10px;
+    width: 700px;
+    justify-content: center;
+    grid-template-columns: 80px 80px 80px 80px 80px 80px 80px 80px;
+}
+
+.listCSS{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-sizing: border-box;
+    border: 2px solid grey;
+    box-shadow: 1px 1px rgb(3, 3, 3);
+    border-radius: 5px;
+    padding: 5px;
+    height: 80px;
+    width: 80px;
+}
+
+.imageCSS{
+    margin: auto;
+}
+
+.listCSS button{
+    background-color: transparent;
+    border: none;
+}
+
+.fruit-ninja{
+    margin: auto;
+    border: 2px solid grey;
+    border-radius: 5px;
+    background-color: beige;
+    text-align: center;
+    padding: 10px;
+    justify-content: center;
+    flex-wrap: wrap;
+    width: 700px;
+}
+
 .three-boxes{
     display: grid;
     margin: auto;
     border: 2px solid grey;
+    background-color: beige;
     border-radius: 5px;
     padding: 10px;
     width: 700px;
@@ -39,7 +151,6 @@
     background-image: url('../dots.png');
     flex-direction: column;
     text-align: center;
-    
 }
 
 .first-box button{
@@ -50,7 +161,7 @@
     margin-top: 10px;
     font-weight: bold;
     border-radius: 5px;
-    background: rgba(200, 54, 54, 0.5)
+    background: rgba(200, 54, 54, .75)
 }
 
 .second-box{
@@ -68,7 +179,7 @@
     margin-top: 10px;
     font-weight: bold;
     border-radius: 5px;
-    background: rgba(200, 54, 54, 0.5)
+    background: rgba(200, 54, 54, 0.75)
 }
 
 .third-box{
@@ -85,7 +196,7 @@
     margin-top: 10px;
     font-weight: bold;
     border-radius: 5px;
-    background: rgba(200, 54, 54, 0.5)
+    background: rgba(200, 54, 54, 0.75)
 }
 
 .help{
@@ -95,10 +206,6 @@
 .question{
     border-radius: 50%;
 }
-
-/* .helpBox{
-
-} */
 
 .help1:hover + .help-1{
     background-color: white;
@@ -120,8 +227,9 @@
     display: grid;
     margin: auto;
     border: 2px solid grey;
+    background-color: beige;
     border-radius: 5px;
-    padding: 10px;
+    padding-bottom: 20px;
     width: 700px;
     justify-content: center;
     grid-template-columns: 300px;
@@ -131,11 +239,64 @@
     display: grid;
     margin: auto;
     border: 2px solid grey;
+    background-color: beige;
+    border-radius: 5px;
+    padding-bottom: 20px;
+    width: 700px;
+    justify-content: center;
+    grid-template-columns: 300px;
+}
+
+.postDiv{
+    display: grid;
+    margin: auto;
+    border: 2px solid grey;
+    background-color: beige;
+    border-radius: 5px;
+    padding-bottom: 20px;
+    width: 700px;
+    justify-content: center;
+    grid-template-columns: 300px;
+}
+
+#postRiddle{
+    display: block;
+    align-items: center;
+}
+
+#rQ, #aQ{
+    display: table-cell;
+}
+
+.feedBack-Box{
+    display: grid;
+    margin: auto;
+    border: 2px solid grey;
+    background-color: beige;
     border-radius: 5px;
     padding: 10px;
     width: 700px;
     justify-content: center;
-    grid-template-columns: 300px;
+    grid-template-columns: 50% 50%;
+}
+
+#feedText{
+    margin: auto;
+}
+
+#textName{
+    width: 200px;
+}
+
+#feedBack{
+    width: 200px;
+    height: 150px;
+}
+
+.author img{
+    width: 75%;
+    height: 95%;
+    justify-content: center;
 }
 
 body{
@@ -146,7 +307,8 @@ body{
 }
 
 main{
-    margin-top: 50px;
+    margin-top: 25px;
+    text-align: inline-block;
 }
 
 a{

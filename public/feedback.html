@@ -8,16 +8,28 @@
     <title>Feedback</title>
 </head>
 <body>
-    <h2>Hello! I would love if you could provide and feedback
-        for me so that I can improve!</h2>
+    <h2><center>Hello! I would love if you could provide and feedback
+        for me so that I can improve!</center></h2>
     <div class = "feedBack-Box">
         <form id = "feedText">
-            <input type = "text", id = "textName">
+            <label for = "name">Name: </label>
             <br>
-            <input type = "text", id = "textId">
+            <input type = "text" id = "textName" name = "name">
+            <br>
+            <br>
+            <label for = "feedback">Feedback: </label>
+            <br>
+            <textarea id="feedBack" name = "feedback"></textarea>
             <br>
             <input type = 'submit' value = "Submit">
         </form>
+        <div class = "author">
+            <img alt = "Author" src = "../author.jpeg">
+        </div>
+    </div>
+
+    <div class = "hLink">
+        <a href = "index.html">Return home</a>
     </div>
 </body>
 </html>
