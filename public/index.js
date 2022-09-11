@@ -60,7 +60,7 @@ buttons3.classList.add('hide');
 fruitList.classList.add('hide');
 fruitNinja.classList.add('hide');
 
-const baseURL = 'http://localhost:5012/api/project';
+const baseURL = 'http://localhost:5044/api/project';
 
 // function greeting (event){
 //     event.preventDefault();
@@ -162,7 +162,7 @@ function getFruits(){
         fruity(fruitData);
     })
     .catch(err =>
-        console.log(err))
+        console.log(err.data))
 }
 
 function deleteChoice(id){
@@ -172,7 +172,7 @@ function deleteChoice(id){
             success();
     })
     .catch(err =>
-        console.log(err))
+        console.log(err.data))
 }
 
 function riddler(){
@@ -183,7 +183,7 @@ function riddler(){
         guessRiddle(data)
     })
     .catch(err =>
-        console.log(err))
+        console.log(err.data))
 }
 
 function postRiddles(body){
@@ -191,15 +191,16 @@ function postRiddles(body){
     .then(res => {
         const data1 = res.data;
         console.log(data1);
-        let {question, answer} = data1;
+        let {question, answer, hint} = data1;
 
         alert(`You have successfully added the following riddle:
                 ${question}
-                ${answer}`);
+                ${answer}
+                ${hint}`);
         playAgain();
     })
     .catch(err =>
-        console.log(err))
+        console.log(err.data))
 }
 
 function guessRiddle(value){
@@ -283,6 +284,7 @@ function wrongAnswer(){
 }
 
 function playAgain(){
+
     console.log('Hurray!');
     document.body.removeEventListener('click', playAgain, true);
     riddleBox.classList.add('hide');
@@ -295,18 +297,24 @@ function playAgain(){
     addRid.addEventListener("click", postRid);
 }    
 
-function replay(){
+function replay(event){
+    event.preventDefault();
+
     replayDiv.classList.add('hide');
     riddler();
 }
 
-function close(){
+function close(event){
+    event.preventDefault();
+
     replayDiv.classList.add('hide');
     fruitNinja.classList.add('hide');
     threeBoxes.classList.remove('hide');
 }
 
-function postRid(){
+function postRid(event){
+    event.preventDefault();
+
     replayDiv.classList.add('hide');
     postDiv.classList.remove('hide');
     postRiddle.addEventListener("submit", addRiddles);    
@@ -317,10 +325,12 @@ function addRiddles(event){
 
     let rQuestion = document.querySelector("#rQuestion");
     let aQuestion = document.querySelector("#aQuestion");
+    let hQuestion = document.querySelector("#hintQ");
 
     let rObject = {
         riddle: rQuestion.value,
-        answers: aQuestion.value
+        answers: aQuestion.value,
+        hint: hQuestion.value
     }
     console.log(rObject);
 
@@ -328,35 +338,36 @@ function addRiddles(event){
 
     rQuestion.value = "";
     aQuestion.value = "";
+    hQuestion.value = "";
 }
 
-function createMaze(){
-    let rowIndex, colIndex;
-    let tableLength = 9;
-    for (rowIndex = 0; rowIndex < tableLength; rowIndex++){
-        const row = document.createElement("tr");
+// function createMaze(){
+//     let rowIndex, colIndex;
+//     let tableLength = 9;
+//     for (rowIndex = 0; rowIndex < tableLength; rowIndex++){
+//         const row = document.createElement("tr");
 
-        for(colIndex = 0; colIndex < tableLength; colIndex++){
-            const col = document.createElement("td");
-            col.setAttribute("id", "columns");
-            col.classList.add("columns");
-            if(rowIndex === 0 && colIndex ===0)
-            {
-                col.setAttribute("type", "start");
-                col.setAttribute("id", "starts");
-                col.classList.add("begin");
-            }
-            else if(rowIndex === tableLength && colIndex === tableLength)
-            {
-                col.style.backgroundColor = "rgb(244,0,0)";
-                col.setAttribute("type", "finish");
-                col.setAttribute("id", "finishes");
-                col.classList.add("end");
-            }
-        }
-        row.appendChild(col);
-    }
-}
+//         for(colIndex = 0; colIndex < tableLength; colIndex++){
+//             const col = document.createElement("td");
+//             col.setAttribute("id", "columns");
+//             col.classList.add("columns");
+//             if(rowIndex === 0 && colIndex ===0)
+//             {
+//                 col.setAttribute("type", "start");
+//                 col.setAttribute("id", "starts");
+//                 col.classList.add("begin");
+//             }
+//             else if(rowIndex === tableLength && colIndex === tableLength)
+//             {
+//                 col.style.backgroundColor = "rgb(244,0,0)";
+//                 col.setAttribute("type", "finish");
+//                 col.setAttribute("id", "finishes");
+//                 col.classList.add("end");
+//             }
+//         }
+//         row.appendChild(col);
+//     }
+// }
 
 playBtn1.addEventListener('click', firstRound);
 playBtn2.addEventListener('click', riddler);
