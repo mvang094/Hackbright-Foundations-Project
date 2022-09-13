@@ -1,42 +1,42 @@
 const odd = [
     {
         id: 0,
-        image:'../peach.png',
+        image:'../images/peach.png',
         name: 'Peach',
     },
     {
         id: 1,
-        image:'../applw.png',
+        image:'../images/apple.png',
         name: 'Apple',
     },
     {
         id: 2,
-        image:'../banana.png',
+        image:'../images/banana.png',
         name: 'Banana',
     },
     {
         id: 3,
-        image: '../watermelon.png',
+        image: '../images/watermelon.png',
         name: 'Watermelan',
     },
     {
         id: 4,
-        image: '../grape.png',
+        image: '../images/grape.png',
         name: 'Grape',
     },
     {
         id: 5,
-        image: '../cucumber.png',
+        image: '../images/cucumber.png',
         name: 'Cucumber',
     },
     {
         id: 6,
-        image:'../kiwi.png',
+        image:'../images/kiwi.png',
         name: 'Kiwi',
     },
     {
         id: 7,
-        image:'../orange.png',
+        image:'../images/orange1.png',
         name: 'Orange',
     },
 ]
@@ -111,6 +111,101 @@ const riddles =[
     },
 ]
 
+const words = [
+    {
+        word: "ability",
+        hint: "skill",
+        definition: "https://www.merriam-webster.com/dictionary/ability",
+    },
+    {
+        word: "against",
+        hint: "opposition",
+        definition: "https://www.merriam-webster.com/dictionary/against"
+    },
+    {
+        word: "official",
+        hint: "administer",
+        definition: "https://www.merriam-webster.com/dictionary/official"
+    },
+    {
+        word: "operation",
+        hint: "mission",
+        definition: "https://www.merriam-webster.com/dictionary/operation"
+    },
+    {
+        word: "particular",
+        hint: "specific",
+        definition: "https://www.merriam-webster.com/dictionary/particular"
+    },
+    {
+        word: "thousand",
+        hint: "large number",
+        definition: "https://www.merriam-webster.com/dictionary/thousand"
+    },
+    {
+        word: "violence",
+        hint: "foul play",
+        definition: "https://www.merriam-webster.com/dictionary/violence"
+    },
+    {
+        word: "window",
+        hint: "I was looking outside",
+        definition: "https://www.merriam-webster.com/dictionary/window"
+    },
+    {
+        word: "church",
+        hint: "chapel",
+        definition: "https://www.merriam-webster.com/dictionary/church"
+    },
+    {
+        word: "condition",
+        hint: "What are the terms of the contract?",
+        definition: "https://www.merriam-webster.com/dictionary/condition"
+    },
+
+]
+
+const man = [
+    {
+        id: 0,
+        image:"../images/hangm1.png",
+    },
+    {
+        id: 1,
+        image:"../images/hangm2.png",
+    },
+    {
+        id: 2,
+        image:"../images/hangm3.png",
+    },
+    {
+        id: 3,
+        image:"../images/hangm4.png",
+    },
+    {
+        id: 4,
+        image:"../images/hangm5.png",
+    },
+    {
+        id: 5,
+        image:"../images/hangm6.png",
+    },
+    {
+        id: 6,
+        image:"../images/hangm7.png",
+    },
+    {
+        id: 7,
+        image:"../images/hangm8.png",
+    },
+    {
+        id: 8,
+        image:"../images/hangm9.png",
+    },
+]
+
+const characters = []
+
 module.exports = {
-    riddles, odd
+    riddles, odd, words, man
 }

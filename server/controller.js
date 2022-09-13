@@ -11,7 +11,7 @@ const sequelize = new Sequelize(CONNECTION_STRING, {
     }
 })
 
-const {riddles, odd} = require("./data.js");
+const {riddles, odd, words, man, characters} = require("./data.js");
 
 let newId = 11;
 let feedId = 0;
@@ -22,21 +22,26 @@ module.exports = {
         res.status(200).send(odd);
     },
 
-    deleteFruit: (req, res) => {
-        const id = +req.params.id;
-        const index = odd.findIndex(e => e.id === id);
-        odd.splice(index, 1);
-        res.status(200).send(odd);
+    getWords: (req, res) => {
+
+        let randomWord;
+
+        const j = Math.floor(Math.random()*words.length);
+        randomWord = words[j];
+
+        res.status(200).send(randomWord);
+    },
+
+    getMan: (req, res) => {
+        res.status(200).send(man);
     },
 
     getRiddle: (req, res) => {
         let question;
-    
-        for (i = 0; i < riddles.length; i++){
-            const j = Math.floor(Math.random()*riddles.length);
-            question = riddles[j];
-        }
-    
+
+        const j = Math.floor(Math.random()*riddles.length);
+        question = riddles[j];
+
         res.status(200).send(question);
     },
 
@@ -62,9 +67,23 @@ module.exports = {
         sequelize.query(`INSERT into feedback (name, response, text_id)
             VALUES(${name}, ${text}, feedId)`)
             .then(res.sendStatus(200))
-            .catch(err => console.log(err))
+            .catch(err => console.log(err.value))
 
         feedId++;
+    },
+
+    postCharacter: (req, res) => {
+        let wChar = req.params.wChar;
+
+        characters.push(wChar);
+        res.status(200).send(characters);
+    },
+
+    deleteFruit: (req, res) => {
+        const id = +req.params.id;
+        const index = odd.findIndex(e => e.id === id);
+        odd.splice(index, 1);
+        res.status(200).send(odd);
     },
 
     seed: (req, res) => {

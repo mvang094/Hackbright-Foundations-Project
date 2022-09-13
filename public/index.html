@@ -9,10 +9,14 @@
 </head>
 <body>
     <section id = "introduction">
-        <h2><center>Hello! This is an application with three simple games to try.
+        <h2><center>This is an application with three simple games to try.
             Please choose one!
         </center></h2>
     </section>
+  <center><form class = "enter">
+        <input type = "text" id ="fName" placeholder="Please enter name">
+        <button id = "sBtn">Submit</button>
+    </form></center>
     <main>
         <div class = "buttons1">
             <h3>Find the odd one out</h3>
@@ -113,11 +117,10 @@
             </form>
         </div>
 
-        <div class = "A-maze-zing">
-            <table id = "maze-T">
-                <tbody id = "maze-tBody">
-                </tbody>
-            </table>
+        <div class = "hangman">
+            <div id = "hangPic"></div>
+            <div id = "inputChar"></div>
+            <div id = "hangingInput"></div>
         </div>
 
     </main>

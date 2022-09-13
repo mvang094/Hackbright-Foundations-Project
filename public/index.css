@@ -146,57 +146,35 @@
     border-radius: 5px;
 }
 
-.first-box{
-    display: flex;
-    background-image: url('../dots.png');
-    flex-direction: column;
-    text-align: center;
-}
-
-.first-box button{
+.first-box button, .second-box button, .third-box button{
     margin-top: auto;
 }
 
-#first-text{
-    margin-top: 10px;
-    font-weight: bold;
-    border-radius: 5px;
-    background: rgba(200, 54, 54, .75)
-}
-
-.second-box{
-    display: flex;
-    background-image: url('../jest.png');
-    flex-direction: column;
-    text-align: center;
-}
-
-.second-box button{
-    margin-top: auto;
-}
-
-#second-text{
+#first-text, #second-text, #third-text{
     margin-top: 10px;
     font-weight: bold;
     border-radius: 5px;
     background: rgba(200, 54, 54, 0.75)
+}
+
+.first-box{
+    display: flex;
+    background-image: url('../images/dots.png');
+    flex-direction: column;
+    text-align: center;
+}
+
+.second-box{
+    display: flex;
+    background-image: url('../images/jest.png');
+    flex-direction: column;
+    text-align: center;
 }
 
 .third-box{
     display: flex;
     flex-direction: column;
     text-align: center;
-}
-
-.third-box button{
-    margin-top: auto;
-}
-
-#third-text{
-    margin-top: 10px;
-    font-weight: bold;
-    border-radius: 5px;
-    background: rgba(200, 54, 54, 0.75)
 }
 
 .help{
@@ -207,7 +185,7 @@
     border-radius: 50%;
 }
 
-.help1:hover + .help-1{
+.help1:hover + .help-1, .help2:hover + .help-2{
     background-color: white;
     display: block;
     position: absolute;
@@ -215,15 +193,7 @@
     font-family: Courier;
 }   
 
-.help2:hover + .help-2{
-    background-color: white;
-    display: block;
-    position: absolute;
-    width: 175px;
-    font-family: Courier;
-} 
-
-.riddle-box{
+.riddle-box, .replayDiv, .postDiv, .failed, .success{
     display: grid;
     margin: auto;
     border: 2px solid grey;
@@ -235,28 +205,10 @@
     grid-template-columns: 300px;
 }
 
-.replayDiv{
-    display: grid;
-    margin: auto;
-    border: 2px solid grey;
-    background-color: beige;
-    border-radius: 5px;
-    padding-bottom: 20px;
-    width: 700px;
-    justify-content: center;
-    grid-template-columns: 300px;
-}
-
-.postDiv{
-    display: grid;
-    margin: auto;
-    border: 2px solid grey;
-    background-color: beige;
-    border-radius: 5px;
-    padding-bottom: 20px;
-    width: 700px;
-    justify-content: center;
-    grid-template-columns: 300px;
+.under{
+    border-radius: 50%;
+    padding: 5px;
+    color: black
 }
 
 #postRiddle{
@@ -268,7 +220,7 @@
     display: table-cell;
 }
 
-.feedBack-Box{
+.feedBack-Box, .hangman{
     display: grid;
     margin: auto;
     border: 2px solid grey;
@@ -278,6 +230,40 @@
     width: 700px;
     justify-content: center;
     grid-template-columns: 50% 50%;
+}
+
+#hangPic, #inputChar{
+    border: 2px solid grey;
+    background-color: beige;
+    padding: 5px;
+    width: 340px;   
+    height: 300px;
+    margin: auto;
+    text-align: center;
+    justify-content: center;
+}
+
+#hangingInput{
+    padding: 10px;
+    width: 725px;
+    margin: auto;
+    text-align: center;
+    justify-content: center;
+}
+
+.horizontal{
+    display: inline-block;
+    font-weight: bold;
+    text-align: center;
+    justify-content: center;
+    margin: 4px;
+}
+
+.alphabet{
+    height: 30px;
+    width: 30px;
+    margin: 5px;
+    font-size: 18px;
 }
 
 #feedText{
@@ -293,6 +279,12 @@
     height: 150px;
 }
 
+.fLink, .hLink{
+    width: 200px;
+    height: 25px;
+    margin: auto;
+}
+
 .author img{
     width: 75%;
     height: 95%;
@@ -301,9 +293,6 @@
 
 body{
     background-color: blanchedalmond;
-    /* display: flex;
-    flex-direction: column;
-    justify-content: center; */
 }
 
 main{

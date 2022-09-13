@@ -1,18 +1,20 @@
-let ridAnswer, ridHint;
+let ridAnswer, ridHint, hangWord, hangHint, hangDef;
 let wrongCount = 0;
+let wordCount = 0;
 let fruitName = 'Watermelan';
 
 const playBtn1 = document.querySelector('.play1');
 const playBtn2 = document.querySelector('.play2');
+const playBtn3 = document.querySelector('.play3');
+
 const yesBtn = document.querySelector('#yes');
 const noBtn = document.querySelector('#no');
 const addRid = document.querySelector('#insert');
 
+const sBtn = document.querySelector('#sBtn');
+
 const riddleBox = document.querySelector('.riddle-box');
 const riddleForm = document.querySelector('#riddleForm');
-
-// const tableBox = document.querySelector('.maze-T');
-// const tableBody = document.querySelector('.maze-tBody');
 
 //Buttons game
 //Circles
@@ -47,12 +49,16 @@ const postDiv = document.querySelector(".postDiv");
 const postRiddle = document.querySelector("#postRiddle");
 const showWord = document.querySelector("#show");
 const fruitNinja = document.querySelector('.fruit-ninja');
-//const mazeBox = document.querySelector(".A-maze-zing");
+const enter = document.querySelector('.enter');
+const fName = document.querySelector('#fName');
+const introduction = document.querySelector("#introduction");
+const hangman = document.querySelector('.hangman');
 
 riddleBox.classList.add('hide');
 replayDiv.classList.add('hide');
 postDiv.classList.add('hide');
 showWord.classList.add('hide');
+hangman.classList.add('hide');
 
 buttons1.classList.add('hide');
 buttons2.classList.add('hide');
@@ -60,22 +66,88 @@ buttons3.classList.add('hide');
 fruitList.classList.add('hide');
 fruitNinja.classList.add('hide');
 
-const baseURL = 'http://localhost:5044/api/project';
+const baseURL = 'http://localhost:5000/api/project';
 
-// function greeting (event){
-//     event.preventDefault();
-//     divForm.classList.add('hide');
+function getFruits(){
+    axios.get(`${baseURL}/fruits`)
+    .then(res => {
+        const fruitData = res.data;
+        console.log(fruitData);
+        fruity(fruitData);})
+    .catch(err => console.log(err.data))}
 
-//     let name = document.querySelector('#fname').value;
+function getWord (){
+    axios.get(`${baseURL}/word`)
+    .then(res=>{
+        console.log(res.data);
+        hangMan(res.data);})
+    .catch(err => console.log(err.data))}
 
-//     const nameDiv = document.createElement('div');
-//     nameDiv.classList.add('nDiv');
+function getHangman(){
+    axios.get(`${baseURL}/man`)
+    .then(res => {
+        console.log(res.data);
+        wrongChar(res.data);})
+    .catch(err => console.log(err.data))}
 
-//     nameDiv.innerHTML = `Hello ${name}! Thanks for playing!`;
-//     container.appendChild(nameDiv);
+function postRiddles(body){
+    axios.post(`${baseURL}/postRiddle/`, body)
+    .then(res => {
+        const data1 = res.data;
+        console.log(data1);
+        let {question, answer, hint} = data1;
 
-//     //firstRound();
-// }
+        alert(`You have successfully added the following riddle:
+                ${question}
+                ${answer}
+                ${hint}`);
+        playAgain()})
+        .catch(err => console.log(err.data))}
+
+function postChar(c){
+    axios.post(`${baseURL}/char`, c)
+    .then(res => {console.log(res.data)
+                displayChar(res.data)})
+    .catch(err => console.log(err.data))}
+
+function deleteChoice(id){
+    axios.delete(`${baseURL}/${id}`)
+    .then(res => {
+            const fruitData = res.data;
+            if(fruitData.length < 7)
+                success();
+            else
+                fruity(fruitData)})
+    .catch(err => console.log(err.data))}
+
+function deleteChar(){
+    axios.delete(`${baseURL}/deleteChar`)
+    .then(res => console.log("Array cleared"))
+    .catch(err => console.log(err.data));}
+
+function riddler(){
+    axios.get(`${baseURL}`)
+    .then(res => {
+        const data = res.data;
+        console.log(data);
+        guessRiddle(data)})
+    .catch(err => console.log(err.data))}
+
+function greeting (event){
+    event.preventDefault();
+
+    let name = fName.value;
+
+    const nameDiv = document.createElement('div');
+    nameDiv.classList.add('nDiv');
+
+    nameDiv.innerHTML = `<center><h3>Hello ${name}!</h3><center>`;
+    introduction.appendChild(nameDiv);
+
+    enter.removeChild(fName);
+    enter.removeChild(sBtn);
+    fName.value = "";
+}
 
 function firstRound(){
     threeBoxes.classList.add('hide');
@@ -94,7 +166,8 @@ function rightChoiceRectangle(){
 
 function fruity(fData){
 
-    const {image} = fData
+    const {image} = fData;
+    console.log(fData);
     
     fruitList.innerHTML = ``;
     
@@ -102,7 +175,11 @@ function fruity(fData){
         if (fData[i].name === 'Watermelan')
         {
             createWrongItem(fData[i]);
-            fruitImage = image;
+        }
+        else if (fData[i].name === 'Orange')
+        {
+            createWrongItem(fData[i]);
+            fruitImage = image.value;
             console.log(fruitImage)
         }
         else
@@ -146,61 +223,13 @@ function success(){
 
     fruitDiv.innerHTML = `
         <h3>You got it correct! Watermelon was spelled: </h3>
-        <h5>Watermelan</h5>
-        <br>
+        <h4>Watermelan</h4>
+        <h3>And the orange <img src = "../images/orange1.png">
+        was actually a pokeball!</h3>
         <h4>Click anywhere to return to the home screen</h4>
     `
     fruitNinja.appendChild(fruitDiv);
     fruitNinja.addEventListener('click', close, true);
-}
-
-function getFruits(){
-    axios.get(`${baseURL}/fruits`)
-    .then(res => {
-        const fruitData = res.data;
-        console.log(fruitData);
-        fruity(fruitData);
-    })
-    .catch(err =>
-        console.log(err.data))
-}
-
-function deleteChoice(id){
-    axios.delete(`${baseURL}/${id}`)
-    .then(res => {
-            const fruitData = res.data;
-            success();
-    })
-    .catch(err =>
-        console.log(err.data))
-}
-
-function riddler(){
-    axios.get(`${baseURL}`)
-    .then(res => {
-        const data = res.data;
-        console.log(data);
-        guessRiddle(data)
-    })
-    .catch(err =>
-        console.log(err.data))
-}
-
-function postRiddles(body){
-    axios.post(`${baseURL}/postRiddle/`, body)
-    .then(res => {
-        const data1 = res.data;
-        console.log(data1);
-        let {question, answer, hint} = data1;
-
-        alert(`You have successfully added the following riddle:
-                ${question}
-                ${answer}
-                ${hint}`);
-        playAgain();
-    })
-    .catch(err =>
-        console.log(err.data))
 }
 
 function guessRiddle(value){
@@ -309,6 +338,7 @@ function close(event){
 
     replayDiv.classList.add('hide');
     fruitNinja.classList.add('hide');
+    hangman.classList.add('hide');
     threeBoxes.classList.remove('hide');
 }
 
@@ -341,36 +371,140 @@ function addRiddles(event){
     hQuestion.value = "";
 }
 
-// function createMaze(){
-//     let rowIndex, colIndex;
-//     let tableLength = 9;
-//     for (rowIndex = 0; rowIndex < tableLength; rowIndex++){
-//         const row = document.createElement("tr");
+function hangMan(hObj){
+    threeBoxes.classList.add('hide');
+    hangman.classList.remove('hide');
+    let hangPic = document.querySelector("#hangPic");
+    const inputChar = document.querySelector('#inputChar');
+    hangPic.innerHTML = "";
+    inputChar.innerHTML = "";
 
-//         for(colIndex = 0; colIndex < tableLength; colIndex++){
-//             const col = document.createElement("td");
-//             col.setAttribute("id", "columns");
-//             col.classList.add("columns");
-//             if(rowIndex === 0 && colIndex ===0)
-//             {
-//                 col.setAttribute("type", "start");
-//                 col.setAttribute("id", "starts");
-//                 col.classList.add("begin");
-//             }
-//             else if(rowIndex === tableLength && colIndex === tableLength)
-//             {
-//                 col.style.backgroundColor = "rgb(244,0,0)";
-//                 col.setAttribute("type", "finish");
-//                 col.setAttribute("id", "finishes");
-//                 col.classList.add("end");
-//             }
-//         }
-//         row.appendChild(col);
-//     }
-// }
+    hangWord = hObj.word;
+    hangHint = hObj.hint.value;
+    hangDef = hObj['definition'];
+
+    let hangingInput = document.querySelector("#hangingInput");
+    const userInput = document.createElement("input");
+    userInput.setAttribute("type", "text");
+    userInput.setAttribute("id", "wInput")
+    const userBtn = document.createElement("input");
+    userBtn.setAttribute("type", "submit")
+    userBtn.setAttribute("id", "hSubmit");
+    userBtn.textContent = "Submit";
+    
+    hangingInput.appendChild(userInput);
+    hangingInput.appendChild(userBtn);
+
+    inputChar.innerHTML = `<section id = "spaces"></section>
+    <br><section id = "squares"></section>
+    `;
+
+    for(let i = 0; i < hangWord.length; i++){
+        let underScore = document.createElement("h1");
+        underScore.setAttribute("id", "u"+i);
+        underScore.classList.add("horizontal");
+        let underText = document.createTextNode("__");
+        underScore.appendChild(underText);
+        const line = document.querySelector("#spaces");
+        line.appendChild(underScore);
+    }
+
+    const hSubmit = document.querySelector('#hSubmit');
+    hSubmit.addEventListener('click', compareWord)
+}
+
+function compareWord(){
+    let wInput = document.querySelector("#wInput");
+    let wChar = wInput.value;
+
+    const rectangle = document.createElement("button");
+    rectangle.classList.add("alphabet");
+    rectangle.textContent = `${wChar}`;
+    const squares = document.querySelector("#squares");
+    squares.appendChild(rectangle);
+
+    wInput.value = "";
+
+    const spaces = document.querySelector('#spaces');
+    console.log(hangWord)
+    console.log(spaces.textContent);
+    if(spaces.textContent === hangWord)
+    {
+        const hangPic = document.querySelector('#hangPic');
+        hangPic.innherHtml = `
+            <center><h3>Great job! The word was <a href = "${hangDef}">${hangWord}</a></h3>
+            <h4>Click on the word to learn the definition</h4>
+            Otherwise, would you like to play again?</center>
+            <br>
+            <center><button id = "cY">Yes</button><button id = "cN">No</button></center>
+        `
+        const cY = document.querySelector("#cY");
+        const cN = document.querySelector("#cN");
+    
+        cY.addEventListener('click', getWord);
+        cN.addEventListener('click', close);
+    }
+    else if (hangWord.includes(wChar.toLowerCase()))
+    { 
+        for(let i = 0; i < hangWord.length; i++)
+        {
+            if(hangWord[i] === wChar.toLowerCase())
+            { 
+                const hChar = document.querySelector("#u"+i);
+                const hText = document.createTextNode(`${wChar}`);
+                hChar.innerText = ''
+                hChar.appendChild(hText);
+            }
+        }
+    }
+    else
+    {
+        wInput.value = "";
+        getHangman();
+    }
+}
+
+function wrongChar(mObj){
+    let imageHold = mObj[wordCount];
+    let mImg = imageHold.image;
+
+    let hangPic = document.querySelector("#hangPic");
+    hangPic.innerHTML = `
+        <img alt = "picture" src = "${mImg}">
+    `
+    wordCount++;
+
+    if (wordCount === 9){
+        const hSubmit = document.querySelector('#hSubmit');
+        const wInput = document.querySelector('#wInput');
+
+        wordCount = 0;
+        hangingInput.removeChild(wInput);
+        hangingInput.removeChild(hSubmit);
+
+        const inputChar = document.querySelector('#inputChar');
+        
+        inputChar.innerHTML= `
+            <center><h3>Oh No! The word was <a href = "${hangDef}">${hangWord}</a></h3>
+            <h4>Click on the word to learn the definition</h4>
+                Otherwise, would you like to play again?</center>
+                <br>
+                <center><button id = "hangYes">Yes</button>
+                <button id = "hangNo">No</button></center>
+        `
+        const hangYes = document.querySelector("#hangYes");
+        const hangNo = document.querySelector("#hangNo");
+
+        hangYes.addEventListener('click', getWord);
+        hangNo.addEventListener('click', close);
+
+        //deleteChar();
+    }
+}
 
 playBtn1.addEventListener('click', firstRound);
 playBtn2.addEventListener('click', riddler);
+playBtn3.addEventListener('click', getWord);
 
 wrongBtn.addEventListener('click', wrongChoice);
 wrongBtn1.addEventListener('click', wrongChoice);
@@ -388,3 +522,4 @@ wrongBtn11.addEventListener('click', wrongChoice);
 rightBtn1.addEventListener('click', rightChoiceTriangle);
 rightBtn2.addEventListener('click', rightChoiceRectangle);
 rightBtn.addEventListener('click', getFruits);
+sBtn.addEventListener('click', greeting);
