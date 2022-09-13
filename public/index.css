@@ -173,6 +173,7 @@
 
 .third-box{
     display: flex;
+    background-image: url('../images/hangman.png');
     flex-direction: column;
     text-align: center;
 }
@@ -185,7 +186,7 @@
     border-radius: 50%;
 }
 
-.help1:hover + .help-1, .help2:hover + .help-2{
+.help1:hover + .help-1, .help2:hover + .help-2, .help3:hover + .help-3{
     background-color: white;
     display: block;
     position: absolute;
@@ -243,9 +244,9 @@
     justify-content: center;
 }
 
-#hangingInput{
+#hangingInput, #charHint{
     padding: 10px;
-    width: 725px;
+    width: 340px;
     margin: auto;
     text-align: center;
     justify-content: center;

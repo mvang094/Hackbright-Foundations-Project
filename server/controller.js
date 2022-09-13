@@ -63,20 +63,13 @@ module.exports = {
 
     postResponse: (req, res) => {
 
-        let {name, text} = req.body;
-        sequelize.query(`INSERT into feedback (name, response, text_id)
-            VALUES(${name}, ${text}, feedId)`)
+        let {text} = req.body;
+        sequelize.query(`INSERT into feedback (response, text_id)
+            VALUES(${text}, feedId)`)
             .then(res.sendStatus(200))
             .catch(err => console.log(err.value))
 
         feedId++;
-    },
-
-    postCharacter: (req, res) => {
-        let wChar = req.params.wChar;
-
-        characters.push(wChar);
-        res.status(200).send(characters);
     },
 
     deleteFruit: (req, res) => {
@@ -89,11 +82,10 @@ module.exports = {
     seed: (req, res) => {
 
         sequelize.query(`
-            drop table if exists feedback;
+            DROP TABLE IF EXISTS feedback;
 
-            create table feedback (
+            CREATE TABLE feedback (
                 text_id serial primary key, 
-                name varchar,
                 response varchar
             );
         `)
