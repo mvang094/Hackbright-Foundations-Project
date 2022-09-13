@@ -503,10 +503,10 @@ function compareWord(){
             const hintBtn = document.querySelector('#showHint')
 
             wordCount = 0;
+            charHint.innerHTML = ``;
             hangingInput.removeChild(wInput);
             hangingInput.removeChild(hSubmit);
-            charHint.removeChild(hintBtn);
-            
+            //charHint.removeChild(hintBtn);
     
              cY.addEventListener('click', getWord);
              cN.addEventListener('click', close);
@@ -555,8 +555,6 @@ function wrongChar(mObj){
 
         hangYes.addEventListener('click', getWord);
         hangNo.addEventListener('click', close);
-
-        //deleteChar();
     }
 }
 

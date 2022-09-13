@@ -264,7 +264,20 @@
     height: 30px;
     width: 30px;
     margin: 5px;
-    font-size: 18px;
+    font-size: 18pt;
+    border-radius: 25%;
+    background-color: pink;
+}
+
+#charHint{
+    font-size: 18pt;
+    font-family: Arial;
+}
+
+#showHint{
+    font-size: 12pt;
+    background-color: none;
+    border-radius: 20%;
 }
 
 #feedText{

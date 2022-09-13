@@ -11,10 +11,9 @@ const sequelize = new Sequelize(CONNECTION_STRING, {
     }
 })
 
-const {riddles, odd, words, man, characters} = require("./data.js");
+const {riddles, odd, words, man} = require("./data.js");
 
 let newId = 11;
-let feedId = 0;
 
 module.exports = {
 
@@ -62,14 +61,16 @@ module.exports = {
     },
 
     postResponse: (req, res) => {
+        let {text} = req.body; 
+        console.log(req.body);
 
-        let {text} = req.body;
-        sequelize.query(`INSERT into feedback (response, text_id)
-            VALUES(${text}, feedId)`)
-            .then(res.sendStatus(200))
-            .catch(err => console.log(err.value))
-
-        feedId++;
+        sequelize.query(`
+            INSERT into feedback (response)
+            VALUES('${text}')`) //strings that get passed back to sql are wrapped in ""
+                                //"" in SQL tells it to make new columns. To pass a string, wrap
+                                //target text in ' ';
+            .then(res => res.status(200).send(alert("Thanks")))
+            .catch(err => console.log(err.data))
     },
 
     deleteFruit: (req, res) => {
@@ -80,7 +81,6 @@ module.exports = {
     },
 
     seed: (req, res) => {
-
         sequelize.query(`
             DROP TABLE IF EXISTS feedback;
 

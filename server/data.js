@@ -204,8 +204,6 @@ const man = [
     },
 ]
 
-const characters = []
-
 module.exports = {
     riddles, odd, words, man
 }

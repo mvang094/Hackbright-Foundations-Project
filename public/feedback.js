@@ -12,7 +12,7 @@ function addFeedback(event){
     let tObject = {
         text: fResponse.value,
     }
-    console.log(tObject);
+    console.log(tObject.text);
 
     postFeedback(tObject);
 
@@ -23,7 +23,7 @@ function postFeedback(body){
     axios.post(`${baseURL}/postFeed/`, body)
     .then(thanks.classList.remove('hide'))
     .catch (err =>
-        console.log(err));
+        console.log(err.data));
 }
 
 feedText.addEventListener('submit', addFeedback);
