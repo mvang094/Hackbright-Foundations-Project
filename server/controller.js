@@ -60,6 +60,28 @@ module.exports = {
         res.status(200).send(newResponse);
     },
 
+    postWord: (req, res) =>{
+
+        let {word, hint} = req.body;
+        let definition = `https://www.merriam-webster.com/dictionary/${word}`
+
+        let newWord = {
+            word,
+            hint,
+            definition
+        }
+
+        words.push(newWord)
+        res.status(200).send(newWord);
+    },
+
+    deleteFruit: (req, res) => {
+        const id = +req.params.id;
+        const index = odd.findIndex(e => e.id === id);
+        odd.splice(index, 1);
+        res.status(200).send(odd);
+    },
+
     postResponse: (req, res) => {
         let {text} = req.body; 
         console.log(req.body);
@@ -71,13 +93,6 @@ module.exports = {
                                 //target text in ' ';
             .then(res => res.status(200).send(alert("Thanks")))
             .catch(err => console.log(err.data))
-    },
-
-    deleteFruit: (req, res) => {
-        const id = +req.params.id;
-        const index = odd.findIndex(e => e.id === id);
-        odd.splice(index, 1);
-        res.status(200).send(odd);
     },
 
     seed: (req, res) => {

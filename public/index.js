@@ -54,6 +54,8 @@ const fName = document.querySelector('#fName');
 const introduction = document.querySelector("#introduction");
 const hangman = document.querySelector('.hangman');
 let hangPic = document.querySelector("#hangPic");
+const addHangObjects = document.querySelector(".addHangObjects");
+const playHAgain = document.querySelector(".playHAgain");
 
 riddleBox.classList.add('hide');
 replayDiv.classList.add('hide');
@@ -66,6 +68,8 @@ buttons2.classList.add('hide');
 buttons3.classList.add('hide');
 fruitList.classList.add('hide');
 fruitNinja.classList.add('hide');
+addHangObjects.classList.add('hide');
+playHAgain.classList.add('hide');
 
 const baseURL = 'http://localhost:5095/api/project';
 
@@ -105,10 +109,10 @@ function postRiddles(body){
         playAgain()})
         .catch(err => console.log(err.data))}
 
-function postChar(c){
-    axios.post(`${baseURL}/char`, c)
-    .then(res => {console.log(res.data)
-                displayChar(res.data)})
+function sendHangWord(h){
+    axios.post(`${baseURL}/postWord`, h)
+    .then(res => {
+        playHangAgain(res.data)})
     .catch(err => console.log(err.data))}
 
 function deleteChoice(id){
@@ -120,11 +124,6 @@ function deleteChoice(id){
             else
                 fruity(fruitData)})
     .catch(err => console.log(err.data))}
-
-function deleteChar(){
-    axios.delete(`${baseURL}/deleteChar`)
-    .then(res => console.log("Array cleared"))
-    .catch(err => console.log(err.data));}
 
 function riddler(){
     axios.get(`${baseURL}`)
@@ -354,6 +353,7 @@ function close(event){
     replayDiv.classList.add('hide');
     fruitNinja.classList.add('hide');
     hangman.classList.add('hide');
+    playHAgain.classList.add('hide');
     threeBoxes.classList.remove('hide');
 }
 
@@ -392,6 +392,8 @@ function hangMan(hObj){
         </center></h2>
     `
     threeBoxes.classList.add('hide');
+    addHangObjects.classList.add('hide');
+    playHAgain.classList.add('hide');
     hangman.classList.remove('hide');
     const inputChar = document.querySelector('#inputChar');
     hangPic.innerHTML = "";
@@ -480,36 +482,40 @@ function compareWord(){
             hangPic.innerHTML = `
                 <center><h3>Great job! The word was <a href = "${hangDef}">${hangWord}</a></h3>
                 <h4>Click on the word to learn the definition</h4>
-                Otherwise, would you like to play again?</center>
+                Otherwise, what would you like to do?</center>
                 <br>
             `
             const succeedYes = document.createElement("button");
             const succeedNo = document.createElement("button");
+            const succeedAdd = document.createElement("button");
+
 
             succeedNo.setAttribute("id", "cNo");
-            succeedNo.textContent = "No";
+            succeedNo.textContent = "Return";
             succeedYes.setAttribute("id", "cYes");
-            succeedYes.textContent = "Yes";
+            succeedYes.textContent = "Play again";
+            succeedAdd.setAttribute("id", "cAdd");
+            succeedAdd.textContent = "Add a word";
 
             hangPic.appendChild(succeedYes);
             hangPic.appendChild(succeedNo);
+            hangPic.appendChild(succeedAdd);
 
             const cY = document.querySelector("#cYes");
             const cN = document.querySelector("#cNo");
-            let charHint = document.querySelector("#charHint");
+            const cAdd = document.querySelector("#cAdd");
 
             const hSubmit = document.querySelector('#hSubmit');
             const wInput = document.querySelector('#wInput');
-            const hintBtn = document.querySelector('#showHint')
 
             wordCount = 0;
             charHint.innerHTML = ``;
             hangingInput.removeChild(wInput);
             hangingInput.removeChild(hSubmit);
-            //charHint.removeChild(hintBtn);
     
              cY.addEventListener('click', getWord);
              cN.addEventListener('click', close);
+             cAdd.addEventListener('click', addWord);
         }
     }
     else
@@ -517,6 +523,56 @@ function compareWord(){
         wInput.value = "";
         getHangman();
     }
+}
+
+function addWord(e){
+    e.preventDefault(); 
+
+    hangman.classList.add('hide');
+    playHAgain.classList.add('hide');
+    addHangObjects.classList.remove('hide');
+
+    const hangForm = document.querySelector("#adding-hangman-word");
+    hangForm.addEventListener('submit', addHangWord);
+}
+
+function addHangWord(e){
+    e.preventDefault();
+
+    const hQ = document.querySelector('#hWord');
+    const hA = document.querySelector('#hAnswer');
+
+    let hangObj = {
+        word: hQ.value,
+        hint: hA.value,
+    }
+
+    console.log(hangObj);
+
+    sendHangWord(hangObj);
+
+    hQ.value = "";
+    hA.value = "";
+}
+
+function playHangAgain(resObj){
+    let {word, hint} = resObj;
+    addHangObjects.classList.add('hide');
+    playHAgain.classList.remove('hide');
+
+    const insert = document.querySelector("#insert");
+    const revealText = document.createElement('h3');
+    revealText.textContent = `You have added word ${word} and hint ${hint}`
+
+    insert.appendChild(revealText);
+
+    const playA = document.querySelector("#playA");
+    const playN = document.querySelector("#playN");
+    const playW = document.querySelector('#playW');
+
+    playA.addEventListener('click', getWord);
+    playN.addEventListener('click', close);
+    playW.addEventListener('click', addWord)
 }
 
 function wrongChar(mObj){
@@ -545,16 +601,19 @@ function wrongChar(mObj){
         inputChar.innerHTML= `
             <center><h3>Oh No! The word was <a href = "${hangDef}">${hangWord}</a></h3>
             <h4>Click on the word to learn the definition</h4>
-                Otherwise, would you like to play again?</center>
+                Otherwise, would you like to:</center>
                 <br>
-                <center><button id = "hangYes">Yes</button>
-                <button id = "hangNo">No</button></center>
+                <center><button id = "hangYes">Play Again?</button>
+                <button id = "hangNo">Return</button>
+                <button id = "addingWord">Add a word</button></center>
         `
         const hangYes = document.querySelector("#hangYes");
         const hangNo = document.querySelector("#hangNo");
+        const addingWord = document.querySelector('#addingWord');
 
         hangYes.addEventListener('click', getWord);
         hangNo.addEventListener('click', close);
+        addingWord.addEventListener('click', addWord)
     }
 }
 
