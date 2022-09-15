@@ -2,7 +2,7 @@ require('dotenv').config()
 const express = require("express");
 const cors = require("cors");
 const path = require('path');
-const {SERVER_PORT} = process.env;
+//const {SERVER_PORT} = process.env;
 const app = express();
 const {getFruit, deleteFruit, getRiddle, 
         postForm, postResponse, getWords, getMan, postWord, seed} = require('./controller.js'); //seed
@@ -25,5 +25,6 @@ app.post('/api/project/postWord', postWord);
 app.post('/api/project/postFeed/', postResponse);
 app.delete('/api/project/:id', deleteFruit);
 
-// const SERVER_PORT = 5000;
-app.listen(SERVER_PORT, () => console.log(`Server is on port ${SERVER_PORT}`));
+//SERVER_PORT = 5095;
+const port = process.env.PORT || 5095;
+app.listen(port, () => console.log(`Server is on port ${port}`));
