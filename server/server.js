@@ -5,7 +5,7 @@ const path = require('path');
 //const {SERVER_PORT} = process.env;
 const app = express();
 const {getFruit, deleteFruit, getRiddle, 
-        postForm, postResponse, getWords, getMan, postWord, seed} = require('./controller.js'); //seed
+        postForm, postResponse, getWords, getMan, postWord, seed} = require('./controller.js');
 
 app.use(cors());
 app.use(express.json());
