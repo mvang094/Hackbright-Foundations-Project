@@ -10,7 +10,7 @@ const {getFruit, deleteFruit, getRiddle,
 app.use(cors());
 app.use(express.json());
 
-app.get('/public', function(req, res) {
+app.get('/', function(req, res) {
         res.sendFile(path.join(__dirname, '../index.html'))
 }); 
 
