@@ -1,6 +1,7 @@
 require('dotenv').config()
 const express = require("express");
 const cors = require("cors");
+const path = require('path');
 const {SERVER_PORT} = process.env;
 const app = express();
 const {getFruit, deleteFruit, getRiddle, 
@@ -8,6 +9,10 @@ const {getFruit, deleteFruit, getRiddle,
 
 app.use(cors());
 app.use(express.json());
+
+app.get('/', function(req, res) {
+        res.sendFile(path.join(__dirname, '../public/index.html'))
+}); 
 
 app.post('/api/project/seed', seed);
 
