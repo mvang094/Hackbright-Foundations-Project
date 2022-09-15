@@ -91,7 +91,8 @@ module.exports = {
             VALUES('${text}')`) //strings that get passed back to sql are wrapped in ""
                                 //"" in SQL tells it to make new columns. To pass a string, wrap
                                 //target text in ' ';
-            .then(res => res.status(200).send(alert("Thanks")))
+            .then(() => {console.log('Added')
+                        res.sendStatus(200)})
             .catch(err => console.log(err.data))
     },
 
@@ -104,5 +105,9 @@ module.exports = {
                 response varchar
             );
         `)
+        .then(() => {
+            console.log('Seeded!')
+            res.sendStatus(200)
+        }).catch(err => console.log('ERROR', err))
     }
 }

@@ -163,6 +163,11 @@ const words = [
         definition: "https://www.merriam-webster.com/dictionary/condition"
     },
 
+    {
+        word: "rat",
+        hint: "Ratatouille",
+        definition: "https://www.merriam-webster.com/dictionary/rat"
+    },
 ]
 
 const man = [

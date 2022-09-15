@@ -6,6 +6,7 @@ let fruitName = 'Watermelan';
 const playBtn1 = document.querySelector('.play1');
 const playBtn2 = document.querySelector('.play2');
 const playBtn3 = document.querySelector('.play3');
+const intro = document.querySelector('#intro');
 
 const yesBtn = document.querySelector('#yes');
 const noBtn = document.querySelector('#no');
@@ -150,9 +151,9 @@ function greeting (event){
 }
 
 function firstRound(){
-    introduction.innerHTML = `
-        <h2><center>Find the Odd one Out! Find the one that does not belong
-        </center></h2>
+    intro.innerHTML = `
+        <center><h3>Find the Odd one Out! Find the one that does not belong
+        </h3></center>
     `
     threeBoxes.classList.add('hide');
     buttons1.classList.remove('hide');
@@ -237,9 +238,9 @@ function success(){
 }
 
 function guessRiddle(value){
-    introduction.innerHTML = `
-        <h2><center>Guess The Riddle! Can you guess the answer?
-        </center></h2>
+    intro.innerHTML = `
+        <center><h3>Guess The Riddle! Can you guess the answer?
+        </h3></center>
     `
     
     threeBoxes.classList.add('hide');
@@ -344,10 +345,10 @@ function replay(event){
 function close(event){
     event.preventDefault();
 
-    introduction.innerHTML = `
-        <h2><center>This is an application with three simple games to try.
+    intro.innerHTML = `
+        <center><h3>This is an application with three simple games to try.
                     Please choose one!
-        </center></h2>
+        </h3></center>
     `
 
     replayDiv.classList.add('hide');
@@ -387,9 +388,9 @@ function addRiddles(event){
 }
 
 function hangMan(hObj){
-    introduction.innerHTML = `
-        <h2><center>Guess The Word! Can you guess the word before it is too late?
-        </center></h2>
+    intro.innerHTML = `
+        <center><h3>Guess The Word! Can you guess the word before it is too late?
+        </h3></center>
     `
     threeBoxes.classList.add('hide');
     addHangObjects.classList.add('hide');
