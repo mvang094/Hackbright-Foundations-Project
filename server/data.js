@@ -112,56 +112,56 @@ const riddles =[
 ]
 
 const words = [
-    // {
-    //     word: "ability",
-    //     hint: "skill",
-    //     definition: "https://www.merriam-webster.com/dictionary/ability",
-    // },
-    // {
-    //     word: "against",
-    //     hint: "opposition",
-    //     definition: "https://www.merriam-webster.com/dictionary/against"
-    // },
-    // {
-    //     word: "official",
-    //     hint: "administer",
-    //     definition: "https://www.merriam-webster.com/dictionary/official"
-    // },
-    // {
-    //     word: "operation",
-    //     hint: "mission",
-    //     definition: "https://www.merriam-webster.com/dictionary/operation"
-    // },
-    // {
-    //     word: "particular",
-    //     hint: "specific",
-    //     definition: "https://www.merriam-webster.com/dictionary/particular"
-    // },
-    // {
-    //     word: "thousand",
-    //     hint: "large number",
-    //     definition: "https://www.merriam-webster.com/dictionary/thousand"
-    // },
-    // {
-    //     word: "violence",
-    //     hint: "foul play",
-    //     definition: "https://www.merriam-webster.com/dictionary/violence"
-    // },
-    // {
-    //     word: "window",
-    //     hint: "I was looking outside",
-    //     definition: "https://www.merriam-webster.com/dictionary/window"
-    // },
-    // {
-    //     word: "church",
-    //     hint: "chapel",
-    //     definition: "https://www.merriam-webster.com/dictionary/church"
-    // },
-    // {
-    //     word: "condition",
-    //     hint: "What are the terms of the contract?",
-    //     definition: "https://www.merriam-webster.com/dictionary/condition"
-    // },
+    {
+        word: "ability",
+        hint: "skill",
+        definition: "https://www.merriam-webster.com/dictionary/ability",
+    },
+    {
+        word: "against",
+        hint: "opposition",
+        definition: "https://www.merriam-webster.com/dictionary/against"
+    },
+    {
+        word: "official",
+        hint: "administer",
+        definition: "https://www.merriam-webster.com/dictionary/official"
+    },
+    {
+        word: "operation",
+        hint: "mission",
+        definition: "https://www.merriam-webster.com/dictionary/operation"
+    },
+    {
+        word: "particular",
+        hint: "specific",
+        definition: "https://www.merriam-webster.com/dictionary/particular"
+    },
+    {
+        word: "thousand",
+        hint: "large number",
+        definition: "https://www.merriam-webster.com/dictionary/thousand"
+    },
+    {
+        word: "violence",
+        hint: "foul play",
+        definition: "https://www.merriam-webster.com/dictionary/violence"
+    },
+    {
+        word: "window",
+        hint: "I was looking outside",
+        definition: "https://www.merriam-webster.com/dictionary/window"
+    },
+    {
+        word: "church",
+        hint: "chapel",
+        definition: "https://www.merriam-webster.com/dictionary/church"
+    },
+    {
+        word: "condition",
+        hint: "What are the terms of the contract?",
+        definition: "https://www.merriam-webster.com/dictionary/condition"
+    },
 
     {
         word: "rat",

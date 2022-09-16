@@ -102,7 +102,6 @@ function postRiddles(body){
         const data1 = res.data;
         console.log(data1);
         let {question, answer, hint} = data1;
-
         alert(`You have successfully added the following riddle:
                 ${question}
                 ${answer}
@@ -113,7 +112,9 @@ function postRiddles(body){
 function sendHangWord(h){
     axios.post(`${baseURL}/postWord`, h)
     .then(res => {
-        playHangAgain(res.data)})
+        let {word, hint} = res.data; 
+        alert(`You have entered ${word} with hint: ${hint}`)
+        playHangAgain()})
     .catch(err => console.log(err.data))}
 
 function deleteChoice(id){
@@ -556,16 +557,17 @@ function addHangWord(e){
     hA.value = "";
 }
 
-function playHangAgain(resObj){
-    let {word, hint} = resObj;
+function playHangAgain(){
+    // let {word, hint} = resObj;
     addHangObjects.classList.add('hide');
     playHAgain.classList.remove('hide');
 
-    const insert = document.querySelector("#insert");
-    const revealText = document.createElement('h3');
-    revealText.textContent = `You have added word ${word} and hint ${hint}`
+    //const insert = document.querySelector("#insert");
+    //insert.innerHTML = `<h3>You have added word ${word} and hint ${hint}</h3>`
+    // const revealText = document.createElement('h3');
+    // revealText.textContent = ``
 
-    insert.appendChild(revealText);
+    // insert.appendChild(revealText);
 
     const playA = document.querySelector("#playA");
     const playN = document.querySelector("#playN");
