@@ -82,19 +82,19 @@ function getFruits(){
         fruity(fruitData);})
     .catch(err => console.log(err.data))}
 
-function getWord (){
-    axios.get(`${baseURL}/word`)
-    .then(res=>{
-        console.log(res.data);
-        hangMan(res.data);})
-    .catch(err => console.log(err.data))}
+// function getWord (){
+//     axios.get(`${baseURL}/word`)
+//     .then(res=>{
+//         console.log(res.data);
+//         hangMan(res.data);})
+//     .catch(err => console.log(err.data))}
 
-function getHangman(){
-    axios.get(`${baseURL}/man`)
-    .then(res => {
-        console.log(res.data);
-        wrongChar(res.data);})
-    .catch(err => console.log(err.data))}
+// function getHangman(){
+//     axios.get(`${baseURL}/man`)
+//     .then(res => {
+//         console.log(res.data);
+//         wrongChar(res.data);})
+//     .catch(err => console.log(err.data))}
 
 function postRiddles(body){
     axios.post(`${baseURL}/postRiddle/`, body)
@@ -109,13 +109,13 @@ function postRiddles(body){
         playAgain()})
         .catch(err => console.log(err.data))}
 
-function sendHangWord(h){
-    axios.post(`${baseURL}/postWord`, h)
-    .then(res => {
-        let {word, hint} = res.data; 
-        alert(`You have entered ${word} with hint: ${hint}`)
-        playHangAgain()})
-    .catch(err => console.log(err.data))}
+// function sendHangWord(h){
+//     axios.post(`${baseURL}/postWord`, h)
+//     .then(res => {
+//         let {word, hint} = res.data; 
+//         alert(`You have entered ${word} with hint: ${hint}`)
+//         playHangAgain()})
+//     .catch(err => console.log(err.data))}
 
 function deleteChoice(id){
     axios.delete(`${baseURL}/${id}`)
@@ -388,241 +388,234 @@ function addRiddles(event){
     hQuestion.value = "";
 }
 
-function hangMan(hObj){
-    intro.innerHTML = `
-        <center><h3>Guess The Word! Can you guess the word before it is too late?
-        </h3></center>
-    `
-    threeBoxes.classList.add('hide');
-    addHangObjects.classList.add('hide');
-    playHAgain.classList.add('hide');
-    hangman.classList.remove('hide');
-    const inputChar = document.querySelector('#inputChar');
-    hangPic.innerHTML = "";
-    inputChar.innerHTML = "";
+// function hangMan(hObj){
+//     intro.innerHTML = `
+//         <center><h3>Guess The Word! Can you guess the word before it is too late?
+//         </h3></center>
+//     `
+//     threeBoxes.classList.add('hide');
+//     addHangObjects.classList.add('hide');
+//     playHAgain.classList.add('hide');
+//     hangman.classList.remove('hide');
+//     const inputChar = document.querySelector('#inputChar');
+//     hangPic.innerHTML = "";
+//     inputChar.innerHTML = "";
 
-    hangWord = hObj.word;
-    hangHint = hObj.hint;
-    hangDef = hObj['definition'];
+//     hangWord = hObj.word;
+//     hangHint = hObj.hint;
+//     hangDef = hObj['definition'];
 
-    let charHint = document.querySelector("#charHint");
-    const hintBtn = document.createElement("button");
-    hintBtn.setAttribute("id", "showHint");
-    hintBtn.textContent = "Hint";
-    charHint.appendChild(hintBtn);
+//     let charHint = document.querySelector("#charHint");
+//     const hintBtn = document.createElement("button");
+//     hintBtn.setAttribute("id", "showHint");
+//     hintBtn.textContent = "Hint";
+//     charHint.appendChild(hintBtn);
 
-    let hangingInput = document.querySelector("#hangingInput");
-    const userInput = document.createElement("input");
-    userInput.setAttribute("type", "text");
-    userInput.setAttribute("id", "wInput")
-    const userBtn = document.createElement("input");
-    userBtn.setAttribute("type", "submit")
-    userBtn.setAttribute("id", "hSubmit");
-    userBtn.textContent = "Submit";
+//     let hangingInput = document.querySelector("#hangingInput");
+//     const userInput = document.createElement("input");
+//     userInput.setAttribute("type", "text");
+//     userInput.setAttribute("id", "wInput")
+//     const userBtn = document.createElement("input");
+//     userBtn.setAttribute("type", "submit")
+//     userBtn.setAttribute("id", "hSubmit");
+//     userBtn.textContent = "Submit";
     
-    hangingInput.appendChild(userInput);
-    hangingInput.appendChild(userBtn);
+//     hangingInput.appendChild(userInput);
+//     hangingInput.appendChild(userBtn);
 
-    inputChar.innerHTML = `<section id = "spaces"></section>
-    <br><section id = "squares"></section>
-    `;
+//     inputChar.innerHTML = `<section id = "spaces"></section>
+//     <br><section id = "squares"></section>
+//     `;
 
-    for(let i = 0; i < hangWord.length; i++){
-        let underScore = document.createElement("h1");
-        underScore.setAttribute("id", "u"+i);
-        underScore.classList.add("horizontal");
-        let underText = document.createTextNode("__");
-        underScore.appendChild(underText);
-        const line = document.querySelector("#spaces");
-        line.appendChild(underScore);
-    }
+//     for(let i = 0; i < hangWord.length; i++){
+//         let underScore = document.createElement("h1");
+//         underScore.setAttribute("id", "u"+i);
+//         underScore.classList.add("horizontal");
+//         let underText = document.createTextNode("__");
+//         underScore.appendChild(underText);
+//         const line = document.querySelector("#spaces");
+//         line.appendChild(underScore);
+//     }
 
-    const hSubmit = document.querySelector('#hSubmit');
-    const hintB = document.querySelector('#showHint');
-    hSubmit.addEventListener('click', compareWord)
-    hintB.addEventListener('click', showHint);
-}
+//     const hSubmit = document.querySelector('#hSubmit');
+//     const hintB = document.querySelector('#showHint');
+//     hSubmit.addEventListener('click', compareWord)
+//     hintB.addEventListener('click', showHint);
+// }
 
-function showHint(){
-    let charHint = document.querySelector("#charHint");
-    charHint.innerHTML = `${hangHint}`;
-}
+// function showHint(){
+//     let charHint = document.querySelector("#charHint");
+//     charHint.innerHTML = `${hangHint}`;
+// }
 
-function compareWord(){
-    let wInput = document.querySelector("#wInput");
-    let wChar = wInput.value;
+// function compareWord(){
+//     let wInput = document.querySelector("#wInput");
+//     let wChar = wInput.value;
 
-    const rectangle = document.createElement("button");
-    rectangle.classList.add("alphabet");
-    rectangle.textContent = `${wChar}`;
-    const squares = document.querySelector("#squares");
-    squares.appendChild(rectangle);
+//     const rectangle = document.createElement("button");
+//     rectangle.classList.add("alphabet");
+//     rectangle.textContent = `${wChar}`;
+//     const squares = document.querySelector("#squares");
+//     squares.appendChild(rectangle);
 
-    wInput.value = "";
+//     wInput.value = "";
 
-    const spaces = document.querySelector('#spaces');
-    console.log(hangWord)
-    console.log(spaces.textContent);
+//     const spaces = document.querySelector('#spaces');
+//     console.log(hangWord)
+//     console.log(spaces.textContent);
 
-    if (hangWord.includes(wChar.toLowerCase()))
-    { 
-        for(let i = 0; i < hangWord.length; i++)
-        {
-            if(hangWord[i] === wChar.toLowerCase())
-            { 
-                const hChar = document.querySelector("#u"+i);
-                const hText = document.createTextNode(`${wChar}`);
-                hChar.innerText = ''
-                hChar.appendChild(hText);
-            }
-        }
+//     if (hangWord.includes(wChar.toLowerCase()))
+//     { 
+//         for(let i = 0; i < hangWord.length; i++)
+//         {
+//             if(hangWord[i] === wChar.toLowerCase())
+//             { 
+//                 const hChar = document.querySelector("#u"+i);
+//                 const hText = document.createTextNode(`${wChar}`);
+//                 hChar.innerText = ''
+//                 hChar.appendChild(hText);
+//             }
+//         }
 
-        if(spaces.textContent === hangWord)
-        {
-            hangPic.innerHTML = "";
+//         if(spaces.textContent === hangWord)
+//         {
+//             hangPic.innerHTML = "";
 
-            hangPic.innerHTML = `
-                <center><h3>Great job! The word was <a href = "${hangDef}">${hangWord}</a></h3>
-                <h4>Click on the word to learn the definition</h4>
-                Otherwise, what would you like to do?</center>
-                <br>
-            `
-            const succeedYes = document.createElement("button");
-            const succeedNo = document.createElement("button");
-            const succeedAdd = document.createElement("button");
+//             hangPic.innerHTML = `
+//                 <center><h3>Great job! The word was <a href = "${hangDef}">${hangWord}</a></h3>
+//                 <h4>Click on the word to learn the definition</h4>
+//                 Otherwise, what would you like to do?</center>
+//                 <br>
+//             `
+//             const succeedYes = document.createElement("button");
+//             const succeedNo = document.createElement("button");
+//             const succeedAdd = document.createElement("button");
 
 
-            succeedNo.setAttribute("id", "cNo");
-            succeedNo.textContent = "Return";
-            succeedYes.setAttribute("id", "cYes");
-            succeedYes.textContent = "Play again";
-            succeedAdd.setAttribute("id", "cAdd");
-            succeedAdd.textContent = "Add a word";
+//             succeedNo.setAttribute("id", "cNo");
+//             succeedNo.textContent = "Return";
+//             succeedYes.setAttribute("id", "cYes");
+//             succeedYes.textContent = "Play again";
+//             succeedAdd.setAttribute("id", "cAdd");
+//             succeedAdd.textContent = "Add a word";
 
-            hangPic.appendChild(succeedYes);
-            hangPic.appendChild(succeedNo);
-            hangPic.appendChild(succeedAdd);
+//             hangPic.appendChild(succeedYes);
+//             hangPic.appendChild(succeedNo);
+//             hangPic.appendChild(succeedAdd);
 
-            const cY = document.querySelector("#cYes");
-            const cN = document.querySelector("#cNo");
-            const cAdd = document.querySelector("#cAdd");
+//             const cY = document.querySelector("#cYes");
+//             const cN = document.querySelector("#cNo");
+//             const cAdd = document.querySelector("#cAdd");
 
-            const hSubmit = document.querySelector('#hSubmit');
-            const wInput = document.querySelector('#wInput');
+//             const hSubmit = document.querySelector('#hSubmit');
+//             const wInput = document.querySelector('#wInput');
 
-            wordCount = 0;
-            charHint.innerHTML = ``;
-            hangingInput.removeChild(wInput);
-            hangingInput.removeChild(hSubmit);
+//             wordCount = 0;
+//             charHint.innerHTML = ``;
+//             hangingInput.removeChild(wInput);
+//             hangingInput.removeChild(hSubmit);
     
-             cY.addEventListener('click', getWord);
-             cN.addEventListener('click', close);
-             cAdd.addEventListener('click', addWord);
-        }
-    }
-    else
-    {
-        wInput.value = "";
-        getHangman();
-    }
-}
+//              cY.addEventListener('click', getWord);
+//              cN.addEventListener('click', close);
+//              cAdd.addEventListener('click', addWord);
+//         }
+//     }
+//     else
+//     {
+//         wInput.value = "";
+//         getHangman();
+//     }
+// }
 
-function addWord(e){
-    e.preventDefault(); 
+// function addWord(e){
+//     e.preventDefault(); 
 
-    hangman.classList.add('hide');
-    playHAgain.classList.add('hide');
-    addHangObjects.classList.remove('hide');
+//     hangman.classList.add('hide');
+//     playHAgain.classList.add('hide');
+//     addHangObjects.classList.remove('hide');
 
-    const hangForm = document.querySelector("#adding-hangman-word");
-    hangForm.addEventListener('submit', addHangWord);
-}
+//     const hangForm = document.querySelector("#adding-hangman-word");
+//     hangForm.addEventListener('submit', addHangWord);
+// }
 
-function addHangWord(e){
-    e.preventDefault();
+// function addHangWord(e){
+//     e.preventDefault();
 
-    const hQ = document.querySelector('#hWord');
-    const hA = document.querySelector('#hAnswer');
+//     const hQ = document.querySelector('#hWord');
+//     const hA = document.querySelector('#hAnswer');
 
-    let hangObj = {
-        word: hQ.value,
-        hint: hA.value,
-    }
+//     let hangObj = {
+//         word: hQ.value,
+//         hint: hA.value,
+//     }
 
-    console.log(hangObj);
+//     console.log(hangObj);
 
-    sendHangWord(hangObj);
+//     sendHangWord(hangObj);
 
-    hQ.value = "";
-    hA.value = "";
-}
+//     hQ.value = "";
+//     hA.value = "";
+// }
 
-function playHangAgain(){
-    // let {word, hint} = resObj;
-    addHangObjects.classList.add('hide');
-    playHAgain.classList.remove('hide');
+// function playHangAgain(){
 
-    //const insert = document.querySelector("#insert");
-    //insert.innerHTML = `<h3>You have added word ${word} and hint ${hint}</h3>`
-    // const revealText = document.createElement('h3');
-    // revealText.textContent = ``
+//     addHangObjects.classList.add('hide');
+//     playHAgain.classList.remove('hide');
 
-    // insert.appendChild(revealText);
+//     const playA = document.querySelector("#playA");
+//     const playN = document.querySelector("#playN");
+//     const playW = document.querySelector('#playW');
 
-    const playA = document.querySelector("#playA");
-    const playN = document.querySelector("#playN");
-    const playW = document.querySelector('#playW');
+//     playA.addEventListener('click', getWord);
+//     playN.addEventListener('click', close);
+//     playW.addEventListener('click', addWord)
+// }
 
-    playA.addEventListener('click', getWord);
-    playN.addEventListener('click', close);
-    playW.addEventListener('click', addWord)
-}
+// function wrongChar(mObj){
+//     let imageHold = mObj[wordCount];
+//     let mImg = imageHold.image;
 
-function wrongChar(mObj){
-    let imageHold = mObj[wordCount];
-    let mImg = imageHold.image;
+//     let hangPic = document.querySelector("#hangPic");
+//     hangPic.innerHTML = `
+//         <img alt = "picture" src = "${mImg}">
+//     `
+//     wordCount++;
 
-    let hangPic = document.querySelector("#hangPic");
-    hangPic.innerHTML = `
-        <img alt = "picture" src = "${mImg}">
-    `
-    wordCount++;
+//     if (wordCount === 9){
+//         const hSubmit = document.querySelector('#hSubmit');
+//         const wInput = document.querySelector('#wInput');
 
-    if (wordCount === 9){
-        const hSubmit = document.querySelector('#hSubmit');
-        const wInput = document.querySelector('#wInput');
+//         wordCount = 0;
+//         hangingInput.removeChild(wInput);
+//         hangingInput.removeChild(hSubmit);
+//         const hintBtn = document.querySelector('#showHint')
+//         let charHint = document.querySelector("#charHint");
+//         charHint.removeChild(hintBtn);
 
-        wordCount = 0;
-        hangingInput.removeChild(wInput);
-        hangingInput.removeChild(hSubmit);
-        const hintBtn = document.querySelector('#showHint')
-        let charHint = document.querySelector("#charHint");
-        charHint.removeChild(hintBtn);
-
-        const inputChar = document.querySelector('#inputChar');
+//         const inputChar = document.querySelector('#inputChar');
         
-        inputChar.innerHTML= `
-            <center><h3>Oh No! The word was <a href = "${hangDef}">${hangWord}</a></h3>
-            <h4>Click on the word to learn the definition</h4>
-                Otherwise, would you like to:</center>
-                <br>
-                <center><button id = "hangYes">Play Again?</button>
-                <button id = "hangNo">Return</button>
-                <button id = "addingWord">Add a word</button></center>
-        `
-        const hangYes = document.querySelector("#hangYes");
-        const hangNo = document.querySelector("#hangNo");
-        const addingWord = document.querySelector('#addingWord');
+//         inputChar.innerHTML= `
+//             <center><h3>Oh No! The word was <a href = "${hangDef}">${hangWord}</a></h3>
+//             <h4>Click on the word to learn the definition</h4>
+//                 Otherwise, would you like to:</center>
+//                 <br>
+//                 <center><button id = "hangYes">Play Again?</button>
+//                 <button id = "hangNo">Return</button>
+//                 <button id = "addingWord">Add a word</button></center>
+//         `
+//         const hangYes = document.querySelector("#hangYes");
+//         const hangNo = document.querySelector("#hangNo");
+//         const addingWord = document.querySelector('#addingWord');
 
-        hangYes.addEventListener('click', getWord);
-        hangNo.addEventListener('click', close);
-        addingWord.addEventListener('click', addWord)
-    }
-}
+//         hangYes.addEventListener('click', getWord);
+//         hangNo.addEventListener('click', close);
+//         addingWord.addEventListener('click', addWord)
+//     }
+// }
 
 playBtn1.addEventListener('click', firstRound);
 playBtn2.addEventListener('click', riddler);
-playBtn3.addEventListener('click', getWord);
+// playBtn3.addEventListener('click', getWord);
 
 wrongBtn.addEventListener('click', wrongChoice);
 wrongBtn1.addEventListener('click', wrongChoice);
