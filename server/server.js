@@ -21,9 +21,9 @@ app.post('/api/project/seed', seed);
 app.get('/api/project/fruits', getFruit);
 app.get('/api/project', getRiddle);
 app.get('/api/project/word', getWords)
-// app.get('/api/project/man', getMan);
+app.get('/api/project/man', getMan);
 app.post('/api/project/postRiddle', postForm);
-// app.post('/api/project/postWord', postWord);
+app.post('/api/project/postWord', postWord);
 app.post('/api/project/postFeed/', postResponse);
 app.delete('/api/project/:id', deleteFruit);
 
